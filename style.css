@@ -35,7 +35,7 @@
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin: 0;
   cursor: default;
 }
@@ -140,7 +140,7 @@ P {
 }
 
 #home {
-  background: url('assets/home-background.png') center/cover no-repeat;
+  background: url("assets/home-background.png") center/cover no-repeat;
   padding: 40px;
   text-align: center;
 }
@@ -382,7 +382,7 @@ P {
 }
 
 .project__description h3:after {
-  content: '';
+  content: "";
   width: 25px;
   height: 2px;
   position: relative;
@@ -432,4 +432,29 @@ P {
 
 .testimonial__speech-bubble a {
   color: var(--color-pink);
+}
+
+#contact {
+  background-color: var(--color-pink);
+}
+
+.contact__title,
+.contact__rights,
+.contact__email {
+  color: var(--color-white);
+}
+
+.contact__title {
+  margin: 32px 0;
+}
+
+.contact__links {
+  font-size: var(--font-large);
+  margin: 24px 0;
+  transition: all var(--animation-duration) ease-in;
+}
+
+.contact__links i:hover {
+  transform: scale(1.1);
+  color: var(--color-yellow);
 }
