@@ -33,3 +33,18 @@ navbarMenu.addEventListener("click", clickListener);
 // Handle scrolling when tapping on the contact me
 const contactBtn = document.querySelector(".home__contact");
 contactBtn.addEventListener("click", clickListener);
+
+// Change Home element opacity when scrolling
+const home = document.querySelector(".home__container");
+const homeHeight = home.getBoundingClientRect().height;
+
+document.addEventListener("scroll", () => {
+  //   console.log(window.scrollY);
+  //   console.log(navbarHeight);
+
+  if (window.scrollY > homeHeight) {
+    return;
+  }
+  const percentVisible = (homeHeight - window.scrollY) / homeHeight;
+  home.style.opacity = percentVisible;
+});
