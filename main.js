@@ -16,14 +16,14 @@ document.addEventListener("scroll", () => {
 
 const clickListener = (event) => {
   const target = event.target;
+  console.log(target);
   const link = target.dataset.link;
   if (link == null) {
     return;
   }
   console.log(link);
 
-  const scrollTo = document.querySelector(link);
-  scrollTo.scrollIntoView({ behavior: "smooth" });
+  scrollIntoView(link);
 };
 
 // Handle scrolling when tapping on the navbar menu
@@ -48,3 +48,23 @@ document.addEventListener("scroll", () => {
   const percentVisible = (homeHeight - window.scrollY) / homeHeight;
   home.style.opacity = percentVisible;
 });
+
+// Show "arrow" button when scrolling down
+const arrowUp = document.querySelector('.arrow-up');
+document.addEventListener('scroll', () => {
+  if (window.scrollY > homeHeight) {
+    arrowUp.classList.add('visible');
+  } else {
+    arrowUp.classList.remove('visible');
+  }
+});
+
+// handle click on the "arrow up" button
+arrowUp.addEventListener("click", () => {
+  scrollIntoView("#home");
+});
+
+function scrollIntoView(selector) {
+  const scrollTo = document.querySelector(selector);
+  scrollTo.scrollIntoView({ behavior: "smooth" });
+}
