@@ -50,12 +50,12 @@ document.addEventListener("scroll", () => {
 });
 
 // Show "arrow" button when scrolling down
-const arrowUp = document.querySelector('.arrow-up');
-document.addEventListener('scroll', () => {
+const arrowUp = document.querySelector(".arrow-up");
+document.addEventListener("scroll", () => {
   if (window.scrollY > homeHeight) {
-    arrowUp.classList.add('visible');
+    arrowUp.classList.add("visible");
   } else {
-    arrowUp.classList.remove('visible');
+    arrowUp.classList.remove("visible");
   }
 });
 
@@ -65,29 +65,32 @@ arrowUp.addEventListener("click", () => {
 });
 
 // Projects
-const workBtnContainer = document.querySelector('.work__categories');
-const projectContainer = document.querySelector('.work__projects');
-const projects = document.querySelectorAll('.project');
-workBtnContainer.addEventListener('click', (e)=> {
+const workBtnContainer = document.querySelector(".work__categories");
+const projectContainer = document.querySelector(".work__projects");
+const projects = document.querySelectorAll(".project");
+workBtnContainer.addEventListener("click", (e) => {
   const element = e.target;
-  const filter = getDatasetFilter(element) || getDatasetFilter(element.parentNode);
-  if(filter == null) {
+  const filter =
+    getDatasetFilter(element) || getDatasetFilter(element.parentNode);
+  if (filter == null) {
     return;
   }
-  console.log(filter);
 
-  console.log('-------------------');
+  projectContainer.classList.add("anim-out");
 
-  projects.forEach((project) => {
-    // console.log(project.dataset.type);
-    if (filter === '*' || filter === project.dataset.type) {
-      project.classList.remove('invisible');
-    } else {
-      project.classList.add('invisible');
 
-    }
 
-  });
+  setTimeout(() => {
+    projects.forEach((project) => {
+      // console.log(project.dataset.type);
+      if (filter === "*" || filter === project.dataset.type) {
+        project.classList.remove("invisible");
+      } else {
+        project.classList.add("invisible");
+      }
+    });
+    projectContainer.classList.remove("anim-out");
+  }, 300);
 });
 
 function getDatasetFilter(e) {
