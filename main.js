@@ -8,10 +8,29 @@ document.addEventListener("scroll", () => {
   //   console.log(window.scrollY);
   //   console.log(navbarHeight);
   if (window.scrollY > navbarHeight) {
-    navbar.classList.add("navbar-dark");
+    navbar.classList.add("navbar--dark");
   } else {
-    navbar.classList.remove("navbar-dark");
+    navbar.classList.remove("navbar--dark");
   }
+});
+
+// Navbar toggle button for small screen
+const navbarToggleBtn = document.querySelector(".navbar__toggle-btn");
+const navbarMenu = document.querySelector(".navbar__menu");
+
+// Handle scrolling when tapping on the navbar menu
+navbarMenu.addEventListener("click", (event) => {
+  const target = event.target;
+  const link = target.dataset.link;
+  if (link == null) {
+    return;
+  }
+  navbarMenu.classList.remove("open");
+  scrollIntoView(link);
+});
+
+navbarToggleBtn.addEventListener("click", () => {
+  navbarMenu.classList.toggle("open");
 });
 
 const clickListener = (event) => {
@@ -25,10 +44,6 @@ const clickListener = (event) => {
 
   scrollIntoView(link);
 };
-
-// Handle scrolling when tapping on the navbar menu
-const navbarMenu = document.querySelector(".navbar__menu");
-navbarMenu.addEventListener("click", clickListener);
 
 // Handle scrolling when tapping on the contact me
 const contactBtn = document.querySelector(".home__contact");
@@ -76,14 +91,12 @@ workBtnContainer.addEventListener("click", (e) => {
     return;
   }
 
-// Remove selection from the previous item and select new one
-  const selected = document.querySelector('.category__btn.selected');
-  selected.classList.remove('selected');
-  const target = e.target.nodeName === 'BUTTON' ? e.target : 
-                    e.target.parentNode;
-  target.classList.add('selected');
-
-
+  // Remove selection from the previous item and select new one
+  const selected = document.querySelector(".category__btn.selected");
+  selected.classList.remove("selected");
+  const target =
+    e.target.nodeName === "BUTTON" ? e.target : e.target.parentNode;
+  target.classList.add("selected");
 
   projectContainer.classList.add("anim-out");
   setTimeout(() => {
