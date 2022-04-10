@@ -327,6 +327,7 @@ P {
   border-radius: var(--size--border-radius);
   font-size: var(--font-regular);
   padding: 8px 48px;
+  position: relative;
 }
 
 .category__btn.selected,
@@ -343,15 +344,16 @@ P {
 
 .category__count {
   display: inline-block;
-  position: relative;
+  position: absolute;
   line-height: 24px;
   background-color: var(--color-orange);
   border-radius: 50%;
   color: var(--color-white);
   width: 24px;
   height: 24px;
+  right: 16px;
   top: -20px;
-  left: 4px;
+
   opacity: 0;
   transition: all var(--animation-duration) ease-in;
 }
@@ -525,6 +527,9 @@ P {
 
   .navbar__toggle-btn {
     display: block;
+    font-size: var(--font-medium);
+    top: 26px;
+    right: 16px;
   }
   #navbar {
     flex-direction: column;
@@ -548,7 +553,7 @@ P {
   }
 
   .section {
-    padding: 16px;
+    padding: 55px;
   }
 
   .about__majors {
@@ -566,15 +571,46 @@ P {
   }
 
   .category__btn {
-    padding: 8px;
+    width: 100%;
+    margin: 4px 0px;
   }
 
   .project {
     flex-grow: 1;
   }
 
+  .testimonial {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .testimonial__avatar {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
+  }
+  .testimonial__avatar:nth-child(odd),
+  .testimonial__avatar:nth-child(even) {
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  .testimonial__speech-bubble {
+    order: 1;
+  }
+
+  .arrow-up {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    line-height: 50px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .navbar__logo > img {
+    height: 30px;
+    width: 30px;
+    object-fit: contain;
+    margin-right: 16px;
   }
 }
