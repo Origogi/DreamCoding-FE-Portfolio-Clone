@@ -33,21 +33,11 @@ navbarToggleBtn.addEventListener("click", () => {
   navbarMenu.classList.toggle("open");
 });
 
-const clickListener = (event) => {
-  const target = event.target;
-  console.log(target);
-  const link = target.dataset.link;
-  if (link == null) {
-    return;
-  }
-  console.log(link);
-
-  scrollIntoView(link);
-};
-
 // Handle scrolling when tapping on the contact me
 const contactBtn = document.querySelector(".home__contact");
-contactBtn.addEventListener("click", clickListener);
+contactBtn.addEventListener("click", () => {
+  scrollIntoView("#contact");
+});
 
 // Change Home element opacity when scrolling
 const home = document.querySelector(".home__container");
@@ -119,6 +109,7 @@ function getDatasetFilter(e) {
 function scrollIntoView(selector) {
   const scrollTo = document.querySelector(selector);
   scrollTo.scrollIntoView({ behavior: "smooth" });
+  selectNavItem(navItems[sectionIds.indexOf(selector)]);
 }
 
 // 1. 모든 섹션의 요소들을 가지고 온다.
@@ -147,7 +138,7 @@ const observerOptions = {
 
 function selectNavItem(selected) {
   selectedNavItem.classList.remove("active");
-  selectedNavItem = navItems[selected];
+  selectedNavItem = selected;
   selectedNavItem.classList.add("active");
 }
 
@@ -163,10 +154,20 @@ const observerCallback = (entries, observer) => {
       } else {
         selectedNavIndex = index - 1;
       }
-      selectNavItem(selectedNavIndex);
     }
   });
 };
 
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 sections.forEach((section) => observer.observe(section));
+
+window.addEventListener("wheel", () => {
+  if (window.scrollY === 0) {
+    selectedNavIndex = 0;
+  } else if (
+    Math.ceil(window.scrollY + window.innerHeight) >= document.body.clientHeight
+  ) {
+    selectedNavIndex = navItems.length - 1;
+  }
+  selectNavItem(navItems[selectedNavIndex]);
+});
