@@ -557,7 +557,8 @@ P {
   }
 
   .section {
-    padding: 55px;
+    padding: 16px;
+    padding-top: 40px;
   }
 
   .about__majors {
